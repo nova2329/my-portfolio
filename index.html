@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="scroll-smooth">
 	<head>
 		<title>Nova's Portfolio</title>
 		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -9,6 +9,7 @@
 				font-family: 'Orbitron', sans-serif;
 			}
 		</style>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	
 	<body class="text-center bg-gradient-to-br from-slate-950 via-purple-950 to-indigo-950 text-white min-h-screen p-10">
@@ -31,7 +32,8 @@
 		
 		<section id="home" class="mt-24 mb-20">
 
-		<p class="text-green-400 font-orbitron text-sm tracking-[0.4em] mb-6 animate-pulse">
+		<p class="text-green-400 font-orbitron font-extrabold text-sm tracking-[0.4em] mb-6">
+			<span class="inline-block w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-[0_0_15px_#4ade80]"></span>
 			[ SYSTEM ONLINE ]
 		</p>
 
@@ -42,14 +44,14 @@
 			HEY, I'M NOVA.
 		</h1>
 
-		<p class="mt-6 text-xl text-gray-300">
-			Engineer // Creator // Explorer
+		<p class="mt-6 text-xl font-orbitron text-cyan-400">
+			I'm a <span id="typing"></span><span class="animate-pulse">|</span>
 		</p>
 
 		</section>
 
 		<p class="mt-4 text-lg text-gray-300">I like to fly drones, launch rockets, build Roblox games, and build robots.</p>
-		<h2 class="mt-8">About me</h2>
+		<h2 id="about" class="mt-8">About me</h2>
 		<p>I am a passionate engineer who loves to explore the world of technology and innovation.</p>
 		<a href="https://hackclub.com" class="text-pink-600 underline hover:text-pink-800">Hack Club</a>
 		<img src="https://cdn.pixabay.com/photo/2016/11/29/02/07/drone-1866742_640.jpg" alt="Drone photo" class="w-64 rounded-lg shadow-lg mx-auto" />
@@ -91,5 +93,45 @@
 				</div>
 		</div>
 	</section>
+	
+	<script>
+    const words = [
+        "Drone pilot",
+        "Rocket scientist",
+        "Roblox developer",
+        "Robotics engineer"
+    ];
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    const typingElement = document.getElementById("typing");
+
+    function type() {
+    typingElement.textContent = words[wordIndex].substring(0, charIndex);
+
+    if (!deleting) {
+        if (charIndex < words[wordIndex].length) {
+            charIndex++;
+        } else {
+            deleting = true;
+            setTimeout(type, 1500);
+            return;
+        }
+    } else {
+        if (charIndex > 0) {
+            charIndex--;
+        } else {
+            deleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+        }
+    }
+
+    setTimeout(type, deleting ? 50 : 100);
+	}
+
+    type();
+</script>
 	</body>
 </html>
