@@ -139,18 +139,7 @@
 	const ctx = canvas.getContext('2d');
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
-	for (let i = 0; i < 3000; i++) 
-	{
-		let x = Math.random() * canvas.width;
-		let y = Math.random() * canvas.height;
-		let radius = Math.random() * 2;
-
-		ctx.fillStyle = "#22d3ee";
-		ctx.beginPath();
-		ctx.arc(x, y, radius, 0, Math.PI * 2);
-		ctx.fill();
-	}
-
+	
 </script>
 	</body>
 </html>
