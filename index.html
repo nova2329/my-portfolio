@@ -154,7 +154,15 @@
 		mouse.x = -1000;
 		mouse.y = -1000;
 	});
-	
+	const colors = 
+	[
+    "#22d3ee",
+    "#c084fc",
+    "#818cf8",
+    "#ffffff",
+    "#ec4899"
+	];
+
 	const particles = [];
 	for (let i = 0; i < 5500; i++) { // Adjust the number of particles here
 		particles.push({
@@ -167,7 +175,8 @@
 			twinkleSpeed: Math.random() * 0.03 + 0.01,
 			speedX: (Math.random() - 0.5) * 0.4,
 			speedY: -Math.random() * 0.4,
-			opacity: Math.random() * 0.7 + 0.3
+			opacity: Math.random() * 0.7 + 0.3,
+			color: colors[Math.floor(Math.random() * colors.length)]
 		});
 	}
 	
@@ -191,12 +200,11 @@
 			let targetX = -dx * force;
 			let targetY = -dy * force;
 			particle.offsetX += (targetX - particle.offsetX) * 0.05;
-			particle.offsetY += (targetY - particle.offsetY) * 0.05
-			if (distance < 120) {
-				ctx.fillStyle = "#ffffff";
-			}
-			else {
-				ctx.fillStyle = "#22d3ee";
+			particle.offsetY += (targetY - particle.offsetY) * 0.05;
+			if (distance < 80) {
+   				 ctx.fillStyle = "#ffffff";
+			} else {
+   				 ctx.fillStyle = particle.color;
 			}
 			particle.phase += particle.twinkleSpeed;
 			let twinkle = (Math.sin(particle.phase) + 1) / 2;
