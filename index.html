@@ -12,7 +12,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	
-	<body class="text-center bg-gradient-to-br from-slate-950 via-purple-950 to-indigo-950 text-white min-h-screen p-10">
+	<body class="text-center bg-gradient-to-br from-slate-950 via-purple-950 to-indigo-950 text-white min-h-screen p-10 isolate">
+		<canvas id="spaceDust" class="fixed inset-0 w-full h-full pointer-events-none -z-10">
+		</canvas>
 		<nav class="flex justify-between items-center px-8 py-5 bg-slate-900/50 backdrop-blur-md border border-purple-500/30 rounded-2xl shadow-lg shadow-purple-500/20 hover:shadow-purple-500/50 transition-all duration-300">
 			<h2 class="text-2xl font-orbitron font-bold text-cyan-400 drop-shadow-[0_0_12px_#22d3ee]">
 				NOVA.exe
@@ -116,7 +118,7 @@
             charIndex++;
         } else {
             deleting = true;
-            setTimeout(type, 1500);
+            setTimeout(type, 1450); // Wait for 2 seconds before deleting
             return;
         }
     } else {
@@ -128,10 +130,27 @@
         }
     }
 
-    setTimeout(type, deleting ? 50 : 100);
+    setTimeout(type, deleting ? 50 : 100);// Adjust typing speed here
 	}
 
     type();
+
+	const canvas = document.getElementById("spaceDust");
+	const ctx = canvas.getContext('2d');
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+	for (let i = 0; i < 3000; i++) 
+	{
+		let x = Math.random() * canvas.width;
+		let y = Math.random() * canvas.height;
+		let radius = Math.random() * 2;
+
+		ctx.fillStyle = "#22d3ee";
+		ctx.beginPath();
+		ctx.arc(x, y, radius, 0, Math.PI * 2);
+		ctx.fill();
+	}
+
 </script>
 	</body>
 </html>
